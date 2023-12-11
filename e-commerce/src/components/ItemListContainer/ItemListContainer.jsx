@@ -31,7 +31,7 @@ const ItemListContainer = ({ title }) => {
     return (
         <Flex direction={'column'} justify={'center'}  align={'center'} m={4} > 
             <Box>
-                <Heading >{title}</Heading>
+                <Heading>{title}</Heading>
             </Box>
             {isLoading ?<Spinner
                 thickness='4px'

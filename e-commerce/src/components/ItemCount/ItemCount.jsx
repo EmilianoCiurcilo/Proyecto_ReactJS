@@ -7,8 +7,8 @@ const ItemCount = ({initialValue, stock, onAdd}) => {
 
   return (
     <Box ml={2}>
-        <Heading color="black">{count}</Heading>
         <Button backgroundColor='RGBA(0, 0, 0, 0.80)' color="white" marginBottom="5px" marginRight="5px" onClick={decrement}>-</Button>
+        <Heading color="black">{count}</Heading>
         <Button backgroundColor='RGBA(0, 0, 0, 0.80)' color="white" marginBottom="5px" marginRight="5px" onClick={increment}>+</Button>
         <Button backgroundColor="#48BB78" onClick={()=> onAdd(count)}>Agregar al carrito</Button>
     </Box>
