@@ -1,5 +1,6 @@
 .navbar-conteiner{
     display: flex;
+    justify-content: center;
 }
 .lista{
     list-style: none;
