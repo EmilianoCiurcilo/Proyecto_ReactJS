@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getProductById } from '../../data/productos'
 import ItemDetail from '../ItemDetail/ItemDetail'
-import { Spinner } from '@chakra-ui/react'
+import { Spinner, Box, Heading, Flex } from '@chakra-ui/react'
+import LoaderComponent from '../LoaderComponent/LoaderComponent'
+import { doc, getDoc } from 'firebase/firestore'
+import { db } from '../../config/Firebase'
+
 
 const ItemDetailContainer = () => {
     const [product, setProduct] = useState({})
@@ -12,29 +16,34 @@ const ItemDetailContainer = () => {
 
     useEffect(() => {
         setIsLoading(true)
-        getProductById(itemId)
-            .then((prod) => {
-                setProduct(prod)
-            })
-            .catch((err) => console.log(err))
-            .finally(()=> {
-                setIsLoading(false)})
+        const getProduct = async() => {
+          const queryRef = doc(db, 'productos', itemId)
+
+          const response = await getDoc(queryRef)
+
+          const newProduct = {
+            id: response.id,
+            ...response.data()
+          }
+
+          setTimeout(() => {
+            setProduct(newProduct)
+            setIsLoading(false)
+          },500)
+        } 
+        getProduct()
     }, [itemId])
 
 
   return (
-    <div>
-        {isLoading ?<Spinner
-                thickness='4px'
-                speed='0.65s'
-                emptyColor='gray.200'
-                color='blue.500'
-                size='xl'
-                /> 
-                :  <ItemDetail {...product} />
-            }
-        
-    </div>
+    <Box>
+      <LoaderComponent loading={isLoading} />
+        {!isLoading && 
+          <Flex justify={'center'} align={'center'}>     
+            <ItemDetail {...product} />
+          </Flex>
+        }
+    </Box>
   )
 }
 

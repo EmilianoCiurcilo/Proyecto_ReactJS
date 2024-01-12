@@ -1,16 +1,24 @@
-import React, { useState } from 'react'
-import { Card, Image, Stack, Heading, Text, Divider, ButtonGroup, Button, CardBody, CardFooter } from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
+import { Card, Image, Stack, Heading, Text, Divider, ButtonGroup, Button, CardBody, CardFooter, Link as ChakraLink } from '@chakra-ui/react'
+import { Link as ReactRouterLink } from 'react-router-dom'
+import CartContext from '../../context/CartContext'
 import ItemCount from '../ItemCount/ItemCount'
-const ItemDetail = ({categoria, descripcion, img, nombre, precio,  id}) => {
+import productos from '../../data/productos'
+const ItemDetail = ({categoria, descripcion, img, nombre, precio, cantidad, id}) => {
     const [quantity, setQuantity] = useState(0)
+    const { addItem } = useContext(CartContext)
 
     const onAdd = (quantity) => {
         setQuantity(quantity)
+        const newProduct = {
+          id, nombre, precio
+        }
+        addItem(newProduct, quantity)
+        console.log(`Agregaste ${quantity} productos`)
     }
 
   return (
-    <Card maxW='sm' >
+    <Card maxW='sm' mt={10} >
       <CardBody>
         <Image
           src={img}
@@ -22,7 +30,7 @@ const ItemDetail = ({categoria, descripcion, img, nombre, precio,  id}) => {
         />
         <Stack mt='6' spacing='3'>
           <Heading size='md'>{nombre}</Heading>
-          <Text color='black' fontSize='80%'>
+          <Text color='gray' fontSize='2xl'>
             {descripcion}
           </Text>
           <Text color='blue.600' fontSize='2xl'>
@@ -32,8 +40,8 @@ const ItemDetail = ({categoria, descripcion, img, nombre, precio,  id}) => {
       </CardBody>
       <Divider />
       <CardFooter>
-        {quantity > 0 ? <Link to={'/cart'}>ir al carrito</Link> :
-        <ItemCount initialValue={1} stock={5} onAdd={onAdd}/>
+           {quantity > 0  ? <ChakraLink as={ReactRouterLink}  to={'/cart'} color='teal.500' fontSize={'1.5rem'}>ir al carrito</ChakraLink> :
+        <ItemCount initialValue={1} stock={cantidad} onAdd={onAdd}/>
         }
       </CardFooter>
     </Card>

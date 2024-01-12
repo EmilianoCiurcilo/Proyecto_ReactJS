@@ -4,44 +4,49 @@ import { getProducts, getProductsByCategory } from '../../data/productos'
 import ItemList from '../ItemList/ItemList'
 import { useParams } from 'react-router-dom'
 import { Spinner } from '@chakra-ui/react'
+import LoaderComponent from '../LoaderComponent/LoaderComponent'
+import { collection, where, query, getDocs } from 'firebase/firestore'
+import { db } from '../../config/Firebase'
 
-const ItemListContainer = ({ title }) => {
+const ItemListContainer = ({title}) => {
     const [ data, setData ] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const { categoryId } = useParams()
     useEffect(() => {
         setIsLoading(true)
-        if(categoryId) {
-            getProductsByCategory(categoryId)
-                .then((prod) => setData(prod))
-                .catch((err) => console.log(err))
-                .finally(()=> setIsLoading(false))
-        }else{
-            getProducts()
-            .then((prod) => {
-                setData(prod)
-            })
-            .catch((err) => console.log(err))
-            .finally(()=> {
-                setIsLoading(false)})
+        const getData = async () => {
 
+            const queryRef = !categoryId ? collection(db, 'productos') : 
+            query(collection(db, 'productos'), where('categoria', '==', categoryId))
+            
+            const response = await getDocs(queryRef)
+
+            const products = response.docs.map((doc) => {
+                const newProduct = {
+                    ...doc.data(),
+                    id: doc.id
+                }
+                return newProduct
+            })
+            setTimeout(() => {
+                setData(products)
+                setIsLoading(false)
+            },1000)
         }
+        getData()
     }, [categoryId])
+
+
 
     return (
         <Flex direction={'column'} justify={'center'}  align={'center'} m={4} > 
-            <Box>
-                <Heading>{title}</Heading>
-            </Box>
-            {isLoading ?<Spinner
-                thickness='4px'
-                speed='0.65s'
-                emptyColor='gray.200'
-                color='blue.500'
-                size='xl'
-                /> 
-                : <ItemList data={data} />
-            }
+            <LoaderComponent loading={isLoading} />
+            {!isLoading && 
+            <>    
+                <Heading >{title}</Heading>
+                <Heading>{categoryId && categoryId}</Heading>
+                <ItemList data={data} />
+            </>}
         </Flex>
     )
 }

@@ -1,5 +1,6 @@
 import { Flex, Box,  Spacer, Heading, Menu, MenuButton, MenuList, MenuItem, Button } from '@chakra-ui/react';
 import { BsChevronDown } from 'react-icons/bs';
+import { FaCartPlus } from 'react-icons/fa';
 import CartWidget from '../CartWidget/CartWidget';
 import { Link } from 'react-router-dom'
 import logo from '../../assets/img/logo.png'
@@ -29,7 +30,9 @@ const NavBar = () => {
             <MenuItem><Link to={'/category/joystick'}>Joysticks</Link></MenuItem>
         </MenuList>
         </Menu>
-        <Button><CartWidget/></Button>
+        <Button>
+          <Link to={'/cart'}>{<FaCartPlus/>}</Link>
+        </Button>
       </Box>
     </Flex>
   )

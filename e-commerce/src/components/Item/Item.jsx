@@ -25,14 +25,12 @@ const Item = ({ id, nombre, img, precio }) => {
       <Divider />
       <CardFooter>
         <ButtonGroup spacing='2'>
-          <Button variant='solid' colorScheme='blue' >
+          <Button variant='solid' colorScheme='blue' padding={'25px'} marginLeft={'100px'} >
             <Link to={`/product/${id}`}>
                 Ver Producto
             </Link>
           </Button>
-          <Button backgroundColor="#48BB78" onClick={()=> onAdd(count)}>Agregar al carrito</Button>
         </ButtonGroup>
-        
       </CardFooter>
     </Card>
   )
