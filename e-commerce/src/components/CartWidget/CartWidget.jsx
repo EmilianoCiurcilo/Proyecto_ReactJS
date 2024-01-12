@@ -9,11 +9,10 @@ const CartWidget = () => {
     return (
         <Box>
 
-            {getQuantity() !== 0 && (
-                
+            {getQuantity() !== -1 && (
                 
                 <Box width={'40%'} ml={4} display="flex" align="center" justify={'space-around'}>
-                <FaCartPlus size={50} />
+                <FaCartPlus size={30} />
                 <span className='cartQuantity'>{getQuantity()}</span>
                 </Box>
                 )

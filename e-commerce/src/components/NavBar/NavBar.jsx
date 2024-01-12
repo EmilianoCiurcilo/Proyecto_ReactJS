@@ -31,7 +31,7 @@ const NavBar = () => {
         </MenuList>
         </Menu>
         <Button>
-          <Link to={'/cart'}>{<FaCartPlus/>}</Link>
+          <Link to={'/cart'}>{<CartWidget/>}</Link>
         </Button>
       </Box>
     </Flex>

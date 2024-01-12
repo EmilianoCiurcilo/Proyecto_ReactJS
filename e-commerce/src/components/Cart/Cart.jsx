@@ -21,7 +21,6 @@ import { Link as ReactRouterLink} from 'react-router-dom'
 
 const Cart = () => {
     const { cart, getTotal,removeItem, clearCart } = useContext(CartContext)
-    console.log('Cart: ', cart)
 
     if(cart.length === 0) {
         return (
@@ -63,8 +62,9 @@ const Cart = () => {
             <Flex justify={'space-around'} align={'center'} width={'70%'} mx="auto" mt={5}>
               <Heading>Precio total: ${getTotal()}</Heading>
               <Button onClick={()=>clearCart()}>Vaciar carrito</Button>
-              <ChakraLink as={ReactRouterLink} to={'/checkout'}>Finalizar la compra</ChakraLink>
-
+              <Button marginLeft={'20px'}>
+              <ChakraLink as={ReactRouterLink} to={'/checkout'}>Finalizar compra</ChakraLink>
+              </Button>
             </Flex>
           </>
   )

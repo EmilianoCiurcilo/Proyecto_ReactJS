@@ -3,7 +3,8 @@ import CartContext from '../../context/CartContext'
 import { Box, Button, Heading,Input, Stack, Text  } from '@chakra-ui/react'
 import { addDoc, collection } from 'firebase/firestore'
 import {db} from '../../config/Firebase'
-
+import Swal from 'sweetalert2'
+import { Link } from 'react-router-dom'
 
 const Checkout = () => {
     const [ user, setUser ] = useState({
@@ -65,7 +66,13 @@ const Checkout = () => {
             
             addDoc(ordersCollection, order)
             .then(({id}) => {
-                console.log(`orden de compra generada con el Nº ${id}`)
+                Swal.fire({
+                    title: "SU COMPRA SE REALIZÓ CON ÉXITO",
+                    text: `Orden De Compra Nº ${id}`,
+                    icon: "success",
+                    confirmButtonColor: "green",
+                    confirmButtonText: "ACEPTAR"
+                  });
             })
         }
     }
@@ -103,6 +110,7 @@ const Checkout = () => {
                 onChange={updateUser}
                 />
             <Button onClick={getOrder}>Comprar</Button>
+            
         {formErrors.repetirMail && (
             <Text>{formErrors.repetirMail}</Text>
         )}

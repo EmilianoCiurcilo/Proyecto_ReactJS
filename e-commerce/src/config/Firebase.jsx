@@ -7,15 +7,14 @@ import productos from "../data/productos";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_APIKEY,
-  authDomain:import.meta.env.VITE_FIREBASE_AUTHDOMAIN ,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECTID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGEBUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGINGSENDERID,
-  appId: import.meta.env.VITE_FIREBASE_APPID
+  apiKey: "AIzaSyDdFXMZ4txltznw7jjVTS8hguKt13a44m4",
+  authDomain:"proyecto-coderreact-41cae.firebaseapp.com",
+  projectId: "proyecto-coderreact-41cae",
+  storageBucket: "proyecto-coderreact-41cae.appspot.com",
+  messagingSenderId: "885923878010",
+  appId: "1:885923878010:web:1e50620a74abc4812597c3"
 };
 
-console.log('config se conectó')
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

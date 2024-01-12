@@ -14,7 +14,6 @@ const ItemDetail = ({categoria, descripcion, img, nombre, precio, cantidad, id})
           id, nombre, precio
         }
         addItem(newProduct, quantity)
-        console.log(`Agregaste ${quantity} productos`)
     }
 
   return (
