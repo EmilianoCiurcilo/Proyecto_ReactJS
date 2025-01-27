@@ -1,14 +1,14 @@
-import React from 'react'
 import { Card, Image, Stack, Heading, Text, Divider, ButtonGroup, Button, CardBody, CardFooter } from '@chakra-ui/react'
-import ItemCount from '../ItemCount/ItemCount'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+
 const Item = ({ id, nombre, img, precio }) => {
 
   return (
     <Card maxW='sm' >
       <CardBody>
         <Image
-          src={`assets/img/${img}.jpg`}
+          src={img}
           alt={nombre}
           borderRadius='lg'
           boxSize='100%'
@@ -34,6 +34,13 @@ const Item = ({ id, nombre, img, precio }) => {
       </CardFooter>
     </Card>
   )
+}
+
+Item.propTypes = {
+  id: PropTypes.string.isRequired,
+  nombre: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired,
+  precio: PropTypes.number.isRequired,
 }
 
 export default Item
