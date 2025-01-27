@@ -8,7 +8,7 @@ const Item = ({ id, nombre, img, precio }) => {
     <Card maxW='sm' >
       <CardBody>
         <Image
-          src={img}
+          src={`assets/img/${img}.jpg`}
           alt={nombre}
           borderRadius='lg'
           boxSize='100%'
