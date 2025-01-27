@@ -7,13 +7,13 @@ import productos from "../data/productos";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDdFXMZ4txltznw7jjVTS8hguKt13a44m4",
-  authDomain:"proyecto-coderreact-41cae.firebaseapp.com",
-  projectId: "proyecto-coderreact-41cae",
-  storageBucket: "proyecto-coderreact-41cae.appspot.com",
-  messagingSenderId: "885923878010",
-  appId: "1:885923878010:web:1e50620a74abc4812597c3"
-};
+    apiKey: "AIzaSyAzTNbr2vTAiobMcK5UFWHYLHT_PECWwOQ",
+    authDomain: "proyecto-react-7d159.firebaseapp.com",
+    projectId: "proyecto-react-7d159",
+    storageBucket: "proyecto-react-7d159.firebasestorage.app",
+    messagingSenderId: "860786832011",
+    appId: "1:860786832011:web:738ba5f9fb4298f8aeda8e"
+  };
 
 
 // Initialize Firebase
