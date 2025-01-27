@@ -1,7 +1,6 @@
 import React from 'react'
 import { Card, Image, Stack, Heading, Text, Divider, ButtonGroup, Button, CardBody, CardFooter } from '@chakra-ui/react'
 import ItemCount from '../ItemCount/ItemCount'
-import img from '../../assets/img/'
 import { Link } from 'react-router-dom'
 const Item = ({ id, nombre, img, precio }) => {
 
@@ -9,7 +8,7 @@ const Item = ({ id, nombre, img, precio }) => {
     <Card maxW='sm'>
       <CardBody>
         <Image
-          src={`/assets/${img}`}
+          src={`/src/assets/${img}`}
           alt={nombre}
           borderRadius='lg'
           boxSize='100%'
